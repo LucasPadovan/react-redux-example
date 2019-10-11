@@ -1,12 +1,12 @@
-export const UPDATE_PAGE_CONTENT = 'UPDATE_PAGE_CONTENT';
-export const updatePageContent = ({messages}) => ({
-    type: UPDATE_PAGE_CONTENT,
+export const UPDATE_MESSAGES = 'UPDATE_MESSAGES';
+export const updateMessages = ({messages}) => ({
+    type: UPDATE_MESSAGES,
     payload: {
-        messages,
-        firstMessage: messages[0],
+        content: [
+            {}
+        ],
     },
 });
-
 
 export const runSearch = (term) => (
     (dispatch, getState) => {
