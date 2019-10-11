@@ -1,0 +1,38 @@
+{
+	"request": {
+		"path": "/"
+	},
+	"user": {
+		"userId": "1234",
+		"fullName": "Normal User",
+		"firstName": "Normal",
+		"lastName": "User",
+		"email": "normal@user.com",
+		"isAuthenticated": true
+	},
+	"env": {
+		"domain": "localhost"
+	},
+	"messages": {
+		"content": [
+			{
+                "content": "Algo hay por aca",
+                "date": "2019-10-10",
+                "profilePicture": "none",
+                "userName": "Lucas"
+			},
+			{
+                "content": "Por aca tambien",
+                "date": "2019-10-10",
+                "profilePicture": "none",
+                "userName": "Lucas"
+			}
+		]
+	},
+	"userLocation": {
+		"lat": -32.89084,
+		"long": -32.89084,
+		"locationId": "421200319",
+		"locationSlug": "argentina--mendoza"
+	}
+}
