@@ -1,12 +1,35 @@
 export const UPDATE_MESSAGES = 'UPDATE_MESSAGES';
-export const updateMessages = ({messages}) => ({
+export const updateMessages = ({content}) => ({
     type: UPDATE_MESSAGES,
     payload: {
-        content: [
-            {}
-        ],
+        content,
     },
 });
+
+export const addNewMessage = ({
+    content,
+    date,
+    profilePicture,
+    userName,
+}) => (
+    (dispatch, getState) => {
+        const {
+            messages,
+        } = getState();
+
+        const payload = [
+            messages.content,
+            ...{
+                content,
+                date,
+                profilePicture,
+                userName,
+            }
+        ];
+
+        dispatch(updateMessages(payload));
+    }
+);
 
 export const runSearch = (term) => (
     (dispatch, getState) => {

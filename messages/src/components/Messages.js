@@ -16,10 +16,11 @@ export default class Messages extends Component {
                 userName: PropTypes.string,
             }),
         ),
+        addNewMessage: PropTypes.func,
     };
 
     render() {
-        const {messages} = this.props;
+        const {messages, addNewMessage} = this.props;
 
         if (isEmpty(messages)) {
             return <div>Algo habias</div>;
@@ -27,6 +28,14 @@ export default class Messages extends Component {
 
         return (
             <div className="messages">
+                <button onClick={addNewMessage.bind(null, {
+                    content: 'Hola',
+                    date: 'hoy',
+                    profilePicture: 'sin',
+                    userName: 'Padovan',
+                })}>
+                    Add new message
+                </button>
                 {
                     messages.map(({
                         content,
