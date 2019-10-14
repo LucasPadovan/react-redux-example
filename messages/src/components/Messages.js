@@ -2,9 +2,8 @@ import React, {Component} from 'react';
 import PropTypes from 'prop-types';
 import isEmpty from 'lodash/isEmpty';
 
-import Button from '@material-ui/core/Button';
-
 import Message from './Message';
+import MessagesForm from './MessagesForm';
 
 
 export default class Messages extends Component {
@@ -30,32 +29,22 @@ export default class Messages extends Component {
         const {messages, addNewMessage} = this.props;
 
         if (isEmpty(messages)) {
-            return <div>Algo habia</div>;
+            return <div>We are empty for now!</div>;
         }
 
         return (
             <div className="messages">
-                <Button
-                    variant="contained"
-                    color="primary"
-                    onClick={addNewMessage.bind(null, {
-                        content: 'a new message',
-                        date: 'another date',
-                        profilePicture: 'profile pic',
-                        userName: 'Sebastian',
-                    })}
-                >
-                    Add new message
-                </Button>
+                <MessagesForm addNewMessage={addNewMessage} />
+
                 {
                     messages.map(({
                         content,
                         date,
                         profilePicture,
                         userName,
-                    }) => (
+                    }, index) => (
                         <Message
-                            key={content}
+                            key={`${content}-${userName}-${index}`}
                             content={content}
                             date={date}
                             profilePicture={profilePicture}

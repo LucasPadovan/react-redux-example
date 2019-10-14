@@ -1,22 +1,32 @@
 import React, {Component} from 'react';
 import PropTypes from 'prop-types';
 
+import Container from '@material-ui/core/Container';
+import Typography from '@material-ui/core/Typography';
+
 import ConnectedMessages from './ConnectedMessages';
+
+import Navbar from '../components/Navbar';
 
 import './Page.scss';
 
 
 export default class Page extends Component {
-    static propTypes = {
-        handleSearch: PropTypes.func,
-    }
-
     render() {
         return (
             <div>
-                <h1>Bienvenidos a mi pagina de nadas</h1>
+                <Navbar classNames="navbar" />
 
-                <ConnectedMessages />
+                <Container maxWidth="lg">
+                    <Typography variant="h1">
+                        React redux
+                    </Typography>
+                    <Typography variant="h2">
+                        With simple messages board
+                    </Typography>
+
+                    <ConnectedMessages />
+                </Container>
             </div>
         );
     }
