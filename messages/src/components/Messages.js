@@ -1,7 +1,8 @@
 import React, {Component} from 'react';
 import PropTypes from 'prop-types';
-
 import isEmpty from 'lodash/isEmpty';
+
+import Button from '@material-ui/core/Button';
 
 import Message from './Message';
 
@@ -34,14 +35,18 @@ export default class Messages extends Component {
 
         return (
             <div className="messages">
-                <button onClick={addNewMessage.bind(null, {
-                    content: 'a new message',
-                    date: 'another date',
-                    profilePicture: 'profile pic',
-                    userName: 'Sebastian',
-                })}>
+                <Button
+                    variant="contained"
+                    color="primary"
+                    onClick={addNewMessage.bind(null, {
+                        content: 'a new message',
+                        date: 'another date',
+                        profilePicture: 'profile pic',
+                        userName: 'Sebastian',
+                    })}
+                >
                     Add new message
-                </button>
+                </Button>
                 {
                     messages.map(({
                         content,
