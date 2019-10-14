@@ -23,16 +23,16 @@ export default class Messages extends Component {
         const {messages, addNewMessage} = this.props;
 
         if (isEmpty(messages)) {
-            return <div>Algo habias</div>;
+            return <div>Algo habia</div>;
         }
 
         return (
             <div className="messages">
                 <button onClick={addNewMessage.bind(null, {
-                    content: 'Hola',
-                    date: 'hoy',
-                    profilePicture: 'sin',
-                    userName: 'Padovan',
+                    content: 'a new message',
+                    date: 'another date',
+                    profilePicture: 'profile pic',
+                    userName: 'Sebastian',
                 })}>
                     Add new message
                 </button>

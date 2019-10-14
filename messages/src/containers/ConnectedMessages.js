@@ -10,9 +10,9 @@ const _mapStateToProps = ({messages, isLoading}) => ({
     isLoading,
 });
 
-const _mapDispatchToProps = () => ({
+const _mapDispatchToProps = {
     addNewMessage,
-});
+};
 
 export default connect(
     _mapStateToProps,

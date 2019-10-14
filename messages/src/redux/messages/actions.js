@@ -1,9 +1,9 @@
 export const UPDATE_MESSAGES = 'UPDATE_MESSAGES';
-export const updateMessages = ({content}) => ({
+
+// content should be an array
+export const updateMessages = (content) => ({
     type: UPDATE_MESSAGES,
-    payload: {
-        content,
-    },
+    payload: content,
 });
 
 export const addNewMessage = ({
@@ -11,25 +11,26 @@ export const addNewMessage = ({
     date,
     profilePicture,
     userName,
-}) => (
+} = {}) => (
     (dispatch, getState) => {
         const {
             messages,
         } = getState();
 
         const payload = [
-            messages.content,
-            ...{
+            ...messages.content,
+            {
                 content,
                 date,
                 profilePicture,
                 userName,
             }
         ];
-
-        dispatch(updateMessages(payload));
+        
+        return dispatch(updateMessages(payload));
     }
 );
+
 
 export const runSearch = (term) => (
     (dispatch, getState) => {
