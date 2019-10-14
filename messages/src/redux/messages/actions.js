@@ -1,11 +1,22 @@
 export const UPDATE_MESSAGES = 'UPDATE_MESSAGES';
 
-// content should be an array
+/**
+ * Despite being simple, this function will launch a message with the name UPDATE_MESSAGES
+ * and some information attached to it, in this case the `payload` that wil be
+ * the content of what we will be receiving in the function stated in the reducers like
+ * redux/messages/reducer.js
+ * Here also, the content will be an array with messages.
+ */
 export const updateMessages = (content) => ({
     type: UPDATE_MESSAGES,
     payload: content,
 });
 
+/**
+ * This function will get the current state of the store, get some values
+ * and will dispatch another function that continues the redux flow to
+ * actually do something with the store.
+ */
 export const addNewMessage = ({
     content,
     date,
@@ -28,26 +39,5 @@ export const addNewMessage = ({
         ];
         
         return dispatch(updateMessages(payload));
-    }
-);
-
-
-export const runSearch = (term) => (
-    (dispatch, getState) => {
-        const {
-            location: {slug},
-        } = getState();
-        const locationString = trim(slug) || 'local';
-
-        let url = `/search/${locationString}/all-events`;
-
-        if (term) {
-            // url = getCanonicalSearchUrl({
-            //     slug: locationString,
-            //     q: term,
-            // });
-        }
-
-        setWindowLocation(url);
     }
 );

@@ -10,6 +10,12 @@ const _mapStateToProps = ({messages, isLoading}) => ({
     isLoading,
 });
 
+/**
+ * We create a _mapDispatchToProps object to expose any number of actions that will be available
+ * in the Messages component.
+ * For now let's go to redux/messages/actions.js > addNewMessage function to see how the action
+ * is dispatched to be executed properly.
+ */
 const _mapDispatchToProps = {
     addNewMessage,
 };

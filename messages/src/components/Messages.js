@@ -16,6 +16,12 @@ export default class Messages extends Component {
                 userName: PropTypes.string,
             }),
         ),
+
+        /**
+         * This function comes from the ConnectedMessages component so if you want to add
+         * more functions that modify the store you should go to containers/ConnectedMessages.js
+         * to follow the guide.
+         */
         addNewMessage: PropTypes.func,
     };
 
