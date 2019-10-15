@@ -154,6 +154,33 @@ const getPlugins = (env, target) => {
     return plugins;
 };
 
+/**
+ * This is the standard response we will be returning each time you enter one of the routes
+ * declared a couple of lines below here.
+ * Check that we are entering a `messages.css` and `messages.web.js`.
+ * Those files are bundled and generated during the flow and can be configurable in order to have
+ * multiple apps using the same repository and configuration file.
+ * Let's go now to the `devServer: {before}` config.
+ */
+const messagesAppResponse = (
+    `
+        <!DOCTYPE html>
+        <html lang="en">
+            <head>
+                <meta charset="UTF-8">
+                <meta name="viewport" content="width=device-width, initial-scale=1.0">
+                <meta http-equiv="X-UA-Compatible" content="ie=edge">
+                <title>Messages app</title>
+                <link href="/messages.css" rel="stylesheet">
+            </head>
+            <body>
+                <div id="root"></div>
+                <script src="/messages.web.js"></script>
+            </body>
+        </html>
+    `
+);
+
 process.env.NODE_TLS_REJECT_UNAUTHORIZED = '0';
 
 module.exports = ({env = 'development', target = 'web', appName} = {}) => {
@@ -189,53 +216,23 @@ module.exports = ({env = 'development', target = 'web', appName} = {}) => {
             //     key: fs.readFileSync(path.resolve(__dirname, 'app.key')),
             //     cert: fs.readFileSync(path.resolve(__dirname, 'app.crt')),
             // },
+            /**
+             * Each route defined in `PageRoutes.js` has to have a counterpart here.
+             * For our specific scenario, we return the same response because the
+             * `messages.web.js` is where the `PageRoutes.js` with the correct routes
+             * definitions is bundled.
+             */
             before: (app) => {
                 app.use(bodyParser.json());
 
-                app.post('/api/v3/destination/organizers/:organizer_id/follow/', (req, res) => {
-                    res.json({
-                        'action_performed': true,
-                        'followed_by_you': true,
-                    });
-                });
-
-                app.all('/api/v3/*', (req, res) => {
-                    // proxy localhost:1234/api/v3/search/ to www.eventbriteapi.com/v3/search/
-                    // set token in the .env file at the root directory of this app
-                    const apiPath = req.originalUrl.replace('/api', '');
-
-                    request({
-                        url: `https://www.${process.env.EB_HOST}api.com${apiPath}`,
-                        headers: {
-                            'Authorization': `Bearer ${process.env.EB_API_TOKEN}`,
-                            'Accept': 'application/json',
-                            'Content-Type': 'application/json',
-                        },
-                        method: req.method,
-                        body: JSON.stringify(req.body),
-                    }).then((response) => {
-                        res.status(200).send(response);
-                    }, console.error);
-                });
-
                 app.get('/', (req, res) => {
                     res.set('Content-Type', 'text/html');
-                    res.end(`
-                        <!DOCTYPE html>
-                        <html lang="en">
-                            <head>
-                                <meta charset="UTF-8">
-                                <meta name="viewport" content="width=device-width, initial-scale=1.0">
-                                <meta http-equiv="X-UA-Compatible" content="ie=edge">
-                                <title>Messages app</title>
-                                <link href="/messages.css" rel="stylesheet">
-                            </head>
-                            <body>
-                                <div id="root"></div>
-                                <script src="/messages.web.js"></script>
-                            </body>
-                        </html>
-                    `);
+                    res.end(messagesAppResponse);
+                });
+
+                app.get('/messages', (req, res) => {
+                    res.set('Content-Type', 'text/html');
+                    res.end(messagesAppResponse);
                 });
             },
         },

@@ -1,53 +1,16 @@
-import React from 'react';
-import {Provider} from 'react-redux';
-import thunk from 'redux-thunk';
-import PropTypes from 'prop-types';
+import React, {Component} from 'react';
 
-import reducer from './redux/rootReducer';
+import PageRoutes from './pages/PageRoutes';
 
-import {configureInitialState, configureStore} from './utils/store';
 
-import ConnectedPage from './containers/ConnectedPage';
-
-export default class MessagesApp extends React.Component {
-    static propTypes = {
-        locations: PropTypes.shape({
-            places: PropTypes.arrayOf(PropTypes.object),
-        }),
-        messages: PropTypes.shape({
-            content: PropTypes.arrayOf(
-                PropTypes.shape({
-                    content: PropTypes.string.isRequired,
-                    date: PropTypes.string,
-                    profilePicture: PropTypes.string,
-                    userName: PropTypes.string,
-                }),
-            ),
-        }),
-    }
-
-    constructor(props) {
-        super(props);
-
-        /**
-         * Let's create a store with redux-thunk and set the initial state
-         * If you need to add or modify objects in the store, remember to start
-         * adding them to the 'configureInitialState' method
-         */
-        this._store = configureStore({
-            reducer,
-            initialState: configureInitialState(props),
-            middleware: [
-                thunk,
-            ],
-        });
-    }
-
+/**
+ * We often need to declare multiple routes in our page so we create a
+ * new file where all routes will be declared.
+ */
+export default class ReactReduxApp extends Component {
     render() {
         return (
-            <Provider store={this._store}>
-                <ConnectedPage {...this.props} />
-            </Provider>
+            <PageRoutes {...this.props} />
         );
     }
 }
