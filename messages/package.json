@@ -19,6 +19,48 @@
         "build": "webpack --config ./webpack.config.production.js",
         "lint": "eslint src/ *.js",
         "test": "jest messages/src --config=../jest.config.js",
-        "validate": "npm run lint && npm run test"
+        "validate": "npm run lint && npm run test",
+        "release:patch": "standard-version --release-as patch",
+        "release:minor": "standard-version --release-as minor",
+        "release:major": "standard-version --release-as major"
+    },
+    "standard-version": {
+        "skip": {
+            "tag": true
+        },
+        "types": [
+            {
+                "type": "feat",
+                "section": "Features"
+            },
+            {
+                "type": "fix",
+                "section": "Bug Fixes"
+            },
+            {
+                "type": "chore",
+                "hidden": true
+            },
+            {
+                "type": "docs",
+                "section": "Docs"
+            },
+            {
+                "type": "style",
+                "hidden": true
+            },
+            {
+                "type": "refactor",
+                "section": "Refactor"
+            },
+            {
+                "type": "perf",
+                "hidden": true
+            },
+            {
+                "type": "test",
+                "section": "Code quality"
+            }
+        ]
     }
 }

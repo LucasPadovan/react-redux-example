@@ -90,6 +90,7 @@
         "redux-form": "^8.2.0",
         "redux-thunk": "2.2.0",
         "reselect": "^4.0.0",
+        "standard-version": "^7.0.0",
         "url-lib": "2.0.2"
     },
     "scripts": {
@@ -100,7 +101,10 @@
         "test:open": "cypress open",
         "test": "jest",
         "lint": "eslint '*/src/**/*.js'",
-        "validate": "yarn lint && yarn test"
+        "validate": "yarn lint && yarn test",
+        "release:messages:patch": "cd messages && yarn release:patch",
+        "release:messages:minor": "cd messages && yarn release:minor",
+        "release:messages:major": "cd messages && yarn release:major"
     },
     "version": "0.0.0"
 }
