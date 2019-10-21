@@ -2,12 +2,14 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
-### 0.0.3 (2019-10-20)
+### 0.0.4 (2019-10-21)
 
 
 ### Features
 
-* standard-version enabled ([44613b9](https://github.com/lucaspadovan/react-redux-example/commit/44613b9fb88c53bc649e3f1c4f44325bc6597577))
+* Better release commit message ([a617d4d](https://github.com/lucaspadovan/react-redux-example/commit/a617d4deab48005d96fb68759582697c7eac0540))
+
+### 0.0.3 (2019-10-20)
 
 
 ### Bug Fixes
