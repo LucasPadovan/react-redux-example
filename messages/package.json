@@ -28,6 +28,8 @@
         "skip": {
             "tag": true
         },
+        "releaseCommitMessageFormat": "Release [Messages]: {{currentTag}}",
+        "compareUrlFormat": "{{host}}/{{owner}}/{{repository}}/compare/master...{{hash}}",
         "types": [
             {
                 "type": "feat",
