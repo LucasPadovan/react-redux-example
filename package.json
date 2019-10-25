@@ -91,7 +91,6 @@
         "redux-form": "^8.2.0",
         "redux-thunk": "2.2.0",
         "reselect": "^4.0.0",
-        "standard-version": "^7.0.0",
         "url-lib": "2.0.2"
     },
     "scripts": {
