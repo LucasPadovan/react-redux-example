@@ -20,49 +20,8 @@
         "lint": "eslint src/ *.js",
         "test": "jest messages/src --config=../jest.config.js",
         "validate": "npm run lint && npm run test",
-        "release:patch": "standard-version --release-as patch",
-        "release:minor": "standard-version --release-as minor",
-        "release:major": "standard-version --release-as major"
-    },
-    "standard-version": {
-        "skip": {
-            "tag": true
-        },
-        "releaseCommitMessageFormat": "Release [Messages]: {{currentTag}}",
-        "compareUrlFormat": "{{host}}/{{owner}}/{{repository}}/compare/master...{{hash}}",
-        "types": [
-            {
-                "type": "feat",
-                "section": "Features"
-            },
-            {
-                "type": "fix",
-                "section": "Bug Fixes"
-            },
-            {
-                "type": "chore",
-                "hidden": true
-            },
-            {
-                "type": "docs",
-                "section": "Docs"
-            },
-            {
-                "type": "style",
-                "hidden": true
-            },
-            {
-                "type": "refactor",
-                "section": "Refactor"
-            },
-            {
-                "type": "perf",
-                "hidden": true
-            },
-            {
-                "type": "test",
-                "section": "Code quality"
-            }
-        ]
+        "release:patch": "npm version patch && node ../scripts/generate-changelog.js messages",
+        "release:minor": "npm version minor && node ../scripts/generate-changelog.js messages",
+        "release:major": "npm version major && node ../scripts/generate-changelog.js messages"
     }
 }
