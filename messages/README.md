@@ -45,9 +45,8 @@ just run:
 ## Releasing a new version
 - Create a new branch for the new version
 - run `yarn release:messages:patch` > for a new patch version on the messages package.json file
-an application and not a library - so we don't have to worry about
 - run `yarn release:messages:minor` > for a new minor version on the messages package.json file
-compatibility with other code that depends on this code.
 - run `yarn release:messages:major` > for a new major version on the fmessageseed package.json file
-- Push your branch to github, the previous commands already created a commit!
+- Commit your changes
+- Push your branch to github
 - Post a Pull Request in Github
