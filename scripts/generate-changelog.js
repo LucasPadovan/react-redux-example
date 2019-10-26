@@ -94,6 +94,8 @@ const buildCommitMessage = ({commitWithHash, appName, githubURL}) => {
         // We also remove the app name from the commit because we already filtered that
         const cleanCommitMessage = splitCommit[1].split(`[${appName.toUpperCase()}] `);
 
+        console.log(`* ${cleanCommitMessage[1]}`);
+
         // TODO: this `Commit` should be the short hash of the diff
         commitMessage = `* ${cleanCommitMessage[1]}. [Commit](${githubURL}/${commitHash})\n`;
     }
@@ -113,8 +115,10 @@ const parseProjectCommitsToString = ({projectCommitsList, appName, githubURL}) =
 
         if (_commitsByType.length) {
             commitsByType[key] = _commitsByType;
+            commitTypeTitle = commitTypes[key].title;
 
-            parsedNewCommits += `### ${commitTypes[key].title}\n`;
+            parsedNewCommits += `### ${commitTypeTitle}\n`;
+            console.log(commitTypeTitle)
 
             _commitsByType.forEach(function(commitWithHash) {
                 parsedNewCommits += buildCommitMessage({commitWithHash, appName, githubURL});
@@ -131,6 +135,8 @@ const generateChangelog = ({appName}) => {
     const commitsList = getCommitsList({appName});
 
     if (commitsList.length) {
+        console.log('Hey! seems like some things changed since last bump:')
+
         const packageJson = require(`../${appName}/package.json`);
         const githubURL = packageJson.repository.url;
         const today = new Date()
@@ -142,7 +148,11 @@ const generateChangelog = ({appName}) => {
 
         formattedChangelog += parsedCommitsList;
 
+        console.log(`\nWritting changes in ${appName}/CHANGELOG.md\n`)
         writeOnTop(formattedChangelog, appName);
+    } else {
+        console.log('Seems like there are no changes for your project since last bump.')
+        console.log('The project version was updated in case you want do the bump it anyways.')
     }
 }
 
