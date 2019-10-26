@@ -114,7 +114,7 @@ const parseProjectCommitsToString = ({projectCommitsList, appName, githubURL}) =
         if (_commitsByType.length) {
             commitsByType[key] = _commitsByType;
 
-            parsedNewCommits += `###${commitTypes[key].title}\n`;
+            parsedNewCommits += `### ${commitTypes[key].title}\n`;
 
             _commitsByType.forEach(function(commitWithHash) {
                 parsedNewCommits += buildCommitMessage({commitWithHash, appName, githubURL});
@@ -135,7 +135,7 @@ const generateChangelog = ({appName}) => {
         const githubURL = packageJson.repository.url;
         const today = new Date()
         const formattedDate = `${today.getFullYear()}/${today.getMonth() + 1}/${today.getDate()}`;
-        let formattedChangelog = `##${packageJson.version} (${formattedDate})\n\n`;
+        let formattedChangelog = `## ${packageJson.version} (${formattedDate})\n\n`;
 
         const projectCommitsList = filterByProject({commitsList, appName});
         const parsedCommitsList = parseProjectCommitsToString({projectCommitsList, appName, githubURL});

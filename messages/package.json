@@ -20,8 +20,9 @@
         "lint": "eslint src/ *.js",
         "test": "jest messages/src --config=../jest.config.js",
         "validate": "npm run lint && npm run test",
-        "release:patch": "npm version patch && node ../scripts/generate-changelog.js messages",
-        "release:minor": "npm version minor && node ../scripts/generate-changelog.js messages",
-        "release:major": "npm version major && node ../scripts/generate-changelog.js messages"
+        "generate:changelog": "node ../scripts/generate-changelog.js messages",
+        "release:patch": "npm version patch && npm run generate:changelog",
+        "release:minor": "npm version minor && npm run generate:changelog",
+        "release:major": "npm version major && npm run generate:changelog"
     }
 }
