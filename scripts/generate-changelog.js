@@ -25,17 +25,18 @@ const commitTypes = {
     },
 }
 
+
+/**
+ * Setup the git module with root in the top folder.
+ */
+const repsPath = resolve(__dirname, '../');
+const git = new Git({ reps: repsPath });
+
 /**
  * Use github to generate an array with each commit since last modification of the CHANGELOG.md file.
  */
 const getCommitsList = ({appName}) => {
     let commitsList = [];
-
-    /**
-     * Setup the git module with root in the top folder.
-     */
-    const repsPath = resolve(__dirname, '../');
-    const git = new Git({ reps: repsPath });
 
     /**
      * Get the last commit that modified the CHANGELOG.md file for the app and the last commit in the branch.
@@ -63,6 +64,11 @@ const getCommitsList = ({appName}) => {
     }
 
     return commitsList;
+}
+
+const commitChanges = ({appName, version}) => {
+    console.log('Commiting changes!')
+    git.command(`commit -am 'Release [${appName.toUpperCase()}] v${version}'`)
 }
 
 const filterByType = ({commitsList = [], regex}) => {
@@ -154,6 +160,8 @@ const generateChangelog = ({appName}) => {
         console.log('Seems like there are no changes for your project since last bump.')
         console.log('The project version was updated in case you want do the bump it anyways.')
     }
+
+    commitChanges({appName, version: packageJson.version});
 }
 
 /**
