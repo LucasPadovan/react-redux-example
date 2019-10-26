@@ -66,9 +66,11 @@ const getCommitsList = ({appName}) => {
     return commitsList;
 }
 
+// TODO: not working yet
 const commitChanges = ({appName, version}) => {
     console.log('Commiting changes!')
-    git.command(`commit -am 'Release [${appName.toUpperCase()}] v${version}'`)
+    git.command('add .')
+    git.command(`commit -m "Release [${appName.toUpperCase()}] v${version}"`)
 }
 
 const filterByType = ({commitsList = [], regex}) => {
@@ -139,11 +141,11 @@ const parseProjectCommitsToString = ({projectCommitsList, appName, githubURL}) =
 
 const generateChangelog = ({appName}) => {
     const commitsList = getCommitsList({appName});
+    const packageJson = require(`../${appName}/package.json`);
 
     if (commitsList.length) {
         console.log('Hey! seems like some things changed since last bump:')
 
-        const packageJson = require(`../${appName}/package.json`);
         const githubURL = packageJson.repository.url;
         const today = new Date()
         const formattedDate = `${today.getFullYear()}/${today.getMonth() + 1}/${today.getDate()}`;
@@ -161,7 +163,7 @@ const generateChangelog = ({appName}) => {
         console.log('The project version was updated in case you want do the bump it anyways.')
     }
 
-    commitChanges({appName, version: packageJson.version});
+    // commitChanges({appName, version: packageJson.version});
 }
 
 /**
