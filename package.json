@@ -76,7 +76,7 @@
         "i18next": "14.0.1",
         "i18next-scanner": "2.9.1",
         "konami": "1.6.2",
-        "lodash": "4.17.11",
+        "lodash": "4.17.21",
         "normalizr": "2.2.1",
         "prop-types": "15.6.2",
         "react": "^16.8.6",
